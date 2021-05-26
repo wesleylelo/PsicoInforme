@@ -26,7 +26,7 @@ public class Medicacao extends Tratamento {
     }
     @Override
     public String toString(){
-        return "Md";
+        return "C";
     }
     public String Informativo(){
         return ("A Medicaçao tem benefícios diversos, " + 

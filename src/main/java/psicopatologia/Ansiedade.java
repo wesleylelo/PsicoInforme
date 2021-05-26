@@ -18,6 +18,10 @@ import psico.Cor;
 public class Ansiedade extends Psicopatologia {
     ArrayList<String> sintomas = new ArrayList<String>();
 
+    public Ansiedade(int severidade, int resistencia, Quadro quadro) {
+        super(severidade, resistencia, quadro);
+    }
+
     public Ansiedade(Quadro quadro) {
         super(20, 100, quadro);
         this.sintomas = sintomas;
@@ -28,9 +32,18 @@ public class Ansiedade extends Psicopatologia {
         this.sintomas.add(4,"Pensamentos Negativos sobre o futuro\n");
         this.sintomas.add(5,"Medo irracionais\n");
     }
+    
     @Override
     public String toString(){
-        return "Es";
+        return "A";
+    }
+    public boolean setLife() {
+        if(getResistencia() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     public String Informativo(){
         return ("Na Ansiedade existem diversos sintomas, " + 

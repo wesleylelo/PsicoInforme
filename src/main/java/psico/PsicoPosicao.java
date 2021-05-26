@@ -37,7 +37,7 @@ public class PsicoPosicao {
     public void setLinha(int linha) {
         this.linha = linha;
     }
-    protected Posicao toPosicao(){
+    public Posicao toPosicao(){
         return new Posicao(8 - linha, coluna - 'a');
     }
     protected static PsicoPosicao dePosicao(Posicao posicao){

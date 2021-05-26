@@ -26,7 +26,7 @@ public class Meditacao extends Tratamento {
     }
     @Override
     public String toString(){
-        return "Me";
+        return "D";
     }
     public String Informativo(){
         return ("A Meditaçao tem benefícios diversos, " + 

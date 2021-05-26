@@ -18,7 +18,7 @@ public class AtividadeFisica extends Tratamento{
 
     public AtividadeFisica(Quadro quadro) {
         super(0.15, 25, quadro);
-        this.beneficios = beneficios;
+        
         this.beneficios.add(0,"Liberação de dopamina\n");
         this.beneficios.add(1,"Maior concentração\n");
         this.beneficios.add(2,"Bem-Estar\n");
@@ -26,7 +26,7 @@ public class AtividadeFisica extends Tratamento{
     }
     @Override
     public String toString(){
-        return "Af";
+        return "F";
     }
     public String Informativo(){
         return ("A Atividade Física tem benefícios diversos, " + 

@@ -27,7 +27,7 @@ public class Terapia extends Tratamento {
     }
     @Override
     public String toString(){
-        return "Te";
+        return "T";
     }
     public String Informativo(){
         return ("A Terapia tem benefícios diversos, " + 

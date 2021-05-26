@@ -28,7 +28,15 @@ public class Depressao extends Psicopatologia{
     }
     @Override
     public String toString(){
-        return "De";
+        return "D";
+    }
+    public boolean setLife() {
+        if(getResistencia() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     public String Informativo(){
         return ("Na Depressão existem diversos sintomas, " + 

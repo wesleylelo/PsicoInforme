@@ -10,7 +10,6 @@ package psico;
  * @author lelo0
  */
 
-import com.mycompany.psicoinfo.Peca;
 import com.mycompany.psicoinfo.Quadro;
 import static psico.Cor.GREEN;
 
@@ -32,5 +31,8 @@ public class Obstaculo extends PsicoPeca {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    @Override
+    public String toString(){
+        return "O";
+    }
 }

@@ -27,8 +27,8 @@ public abstract class Tratamento extends PsicoPeca {
 
     
 
-    public Double getBloqueio() {
-        return bloqueio;
+    public Double getBloqueio(Integer b) {
+        return bloqueio*b;
     }
 
     public Integer getBeneficio() {
@@ -41,62 +41,84 @@ public abstract class Tratamento extends PsicoPeca {
     
     private boolean podeMover(Posicao posica){
         PsicoPeca p = (PsicoPeca)getQuadro().peca(posica);
-        if(posicao.getLinha() <= 7){
-            if(posica.getLinha() > 7)
-                return false;
-            if(p == null)
-                return true;
-            else
-                    return false;
-        } else{
-            if(posica.getLinha() < 7)
-                return false;
-            if(p == null)
-                return true;
-            else
-                    return false;
-        }
+        if(posicao.getLinha() >= 5)
+            return p == null;
+        else
+            return false;
     }
     @Override
     public boolean[][] possivelMovimento() {
         boolean[][] mat = new boolean [getQuadro().getLinhas()][getQuadro().getColunas()];
         Posicao p = new Posicao(0,0);
-        p.setValores(posicao.getLinha() - 2, posicao.getColuna());
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna());
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna());
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() + 2, posicao.getColuna());
+        
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna());
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna());
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha(), posicao.getColuna() - 2);
+        p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() - 2, posicao.getColuna() + 2);
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() - 2, posicao.getColuna() - 2);
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() - 2, posicao.getColuna() + 2);
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() + 2, posicao.getColuna() - 2);
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() + 2, posicao.getColuna() + 2);
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
+        if(getQuadro().posicaoExiste(p) && podeMover(p)){
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }

@@ -5,6 +5,10 @@
  */
 package com.mycompany.psicoinfo;
 
+import static psico.Cor.WHITE;
+import static psico.Cor.YELLOW;
+import psico.PsicoCampo;
+
 
 public class Quadro {
     private int linhas;
@@ -41,12 +45,32 @@ public class Quadro {
         return pecas[posicao.getLinha()][posicao.getColuna()];
     }
     
+    public void locarPeca(Peca peca, Posicao posicao, PsicoCampo p){
+        if(existeEUmaPeca(posicao)){
+            throw new QuadroExcecao("There is already a piece on position" + posicao);
+        }
+        if(p.getAtualPlayer() == WHITE){
+            if(posicao.getLinha() >= 4){
+                pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+                peca.posicao = posicao;
+            }else{
+                throw new QuadroExcecao("Campo não é seu!");
+            }
+        }else if(p.getAtualPlayer() == YELLOW){
+            if(posicao.getLinha() <= 3 ){
+                pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+                peca.posicao = posicao;
+            }else{
+                throw new QuadroExcecao("Campo não é seu!");
+            }
+        }
+    }
     public void locarPeca(Peca peca, Posicao posicao){
         if(existeEUmaPeca(posicao)){
             throw new QuadroExcecao("There is already a piece on position" + posicao);
         }
-        pecas[posicao.getLinha()][posicao.getColuna()] = peca;
-        peca.posicao = posicao;
+            pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+            peca.posicao = posicao;
     }
     public Peca removerPeca (Posicao posicao){
         if(!posicaoExiste(posicao)){

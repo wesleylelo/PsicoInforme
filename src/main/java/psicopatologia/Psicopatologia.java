@@ -9,6 +9,7 @@ import com.mycompany.psicoinfo.Posicao;
 import com.mycompany.psicoinfo.Quadro;
 import javax.swing.text.Position;
 import psico.Cor;
+import static psico.Cor.WHITE;
 import static psico.Cor.YELLOW;
 import psico.PsicoPeca;
 
@@ -17,9 +18,9 @@ import psico.PsicoPeca;
  * @author lelo0
  */
 public abstract class Psicopatologia extends PsicoPeca {
-    private int severidade;
-    private int resistencia;
-
+    private Integer severidade;
+    private Integer resistencia;
+    
     public Psicopatologia(int severidade, int resistencia,Quadro quadro) {
         super(YELLOW, quadro);
         this.severidade = severidade;
@@ -34,40 +35,19 @@ public abstract class Psicopatologia extends PsicoPeca {
         return resistencia;
     }
 
-    public void setResistencia(int dano) {
-        resistencia = resistencia - dano;
+    public void setResistencia(Integer resistencia) {
+        this.resistencia = this.resistencia - resistencia;
     }
+
     
     private boolean podeMover(Posicao posica){
         PsicoPeca p = (PsicoPeca)getQuadro().peca(posica);
-        if(posicao.getLinha() <= 7){
-            if(posica.getLinha() > 7)
-                return false;
-            if(p == null)
-                return true;
-            else
-                    return false;
-        } else{
-            if(posica.getLinha() < 7)
-                return false;
-            if(p == null)
-                return true;
-            else
-                    return false;
-        }
+        if(posicao.getLinha() < 5)
+            return p == null;
+        else
+            return false;
     }
-    public boolean[][] possivelAtaque(){
-        boolean[][] mat  = new boolean[getQuadro().getLinhas()][getQuadro().getColunas()];
-        Posicao p = new Posicao(0,0);
-        while(getQuadro().posicaoExiste(p) && !getQuadro().existeEUmaPeca(p)){
-            p.setLinha(p.getLinha() - 1);
-            continue;
-        }
-        if(getQuadro().posicaoExiste(p) && existeOponentePeca(p)){
-            mat[p.getLinha()][p.getColuna()] = true;
-        }
-        return mat;
-    }
+    
     @Override
     public boolean[][] possivelMovimento() {
         boolean[][] mat = new boolean [getQuadro().getLinhas()][getQuadro().getColunas()];

@@ -30,7 +30,16 @@ public class Esquizofrenia extends Psicopatologia {
     }
     @Override
     public String toString(){
-        return "Es";
+        return "E";
+    }
+    
+    public boolean setLife() {
+        if(getResistencia() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     public String Informativo(){
         return ("Na Esquizofrenia existem diversos sintomas, " + 

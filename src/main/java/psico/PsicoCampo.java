@@ -11,6 +11,10 @@ import com.mycompany.psicoinfo.Quadro;
 import java.util.Random;
 import static psico.Cor.WHITE;
 import static psico.Cor.YELLOW;
+import psicopatologia.Ansiedade;
+import psicopatologia.Depressao;
+import psicopatologia.Esquizofrenia;
+import psicopatologia.Psicopatologia;
 
 /**
  *
@@ -21,18 +25,13 @@ public class PsicoCampo {
     private int selectMap;
     private Cor atualPlayer;
     private Quadro quadro;
-    private Integer tratamentoLife;
+    private Double tratamentoLife;
 
-    public Integer getTratamentoLife() {
-        return tratamentoLife;
-    }
-
-    public void setTratamentoLife(Integer dano) {
-        this.tratamentoLife = tratamentoLife - dano;
-    }
+    
     public PsicoCampo(int selectMap){
         quadro = new Quadro(8,8);
         turno = 10;
+        tratamentoLife = 100.0;
         this.selectMap = selectMap;
         Random m = new Random();
         int h = m.nextInt(2) + 1;
@@ -49,9 +48,30 @@ public class PsicoCampo {
         }
  
     }
-    
+    public void setSelectMap(int selectMap) {
+        this.selectMap = selectMap;
+    }
+
+    public Quadro getQuadro() {
+        return quadro;
+    }
+
+    public void setQuadro(Quadro quadro) {
+        this.quadro = quadro;
+    }
+
+    public Double getTratamentoLife() {
+        return tratamentoLife;
+    }
+
+    public void setTratamentoLife(Double dano) {
+        this.tratamentoLife = tratamentoLife - dano;
+    }
     public int getTurno(){
         return turno;
+    }
+    public void setTurno(int turno){
+        this.turno = turno;
     }
     
     public Cor getAtualPlayer(){
@@ -66,6 +86,23 @@ public class PsicoCampo {
         }
         return mat;
     }
+    
+    public boolean VivoOuMorto(){
+
+        PsicoPeca[][] mat = new PsicoPeca[quadro.getLinhas()][quadro.getColunas()];
+        for(int i = 4; i < quadro.getLinhas(); i++){
+            for(int j = 0; j < quadro.getColunas(); j++){
+                mat[i][j] = (PsicoPeca) quadro.peca(i, j);
+                mat[i][j] = (Psicopatologia)mat[i][j];
+                if(((Psicopatologia)mat[i][j]).getResistencia() == 0)
+                    continue;
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public boolean [][] PossiveisMovimentos(PsicoPosicao origemPosicao){
         Posicao posicao = origemPosicao.toPosicao();
         validarOrigemPosicao(posicao);
@@ -76,7 +113,7 @@ public class PsicoCampo {
         Posicao target = targetPosicao.toPosicao();
         validarOrigemPosicao(origem);
         validarTargetPosicao(origem, target);
-        Peca capturadoPeca = makeCapture( target);
+        Peca capturadoPeca = makeMove(origem,target);
         return (PsicoPeca)capturadoPeca;
     }/*Mudar entender melhor*/
     private Peca makeCapture( Posicao target){
@@ -100,13 +137,21 @@ public class PsicoCampo {
         }
     }/*Rever*/
     public void validarTargetPosicao(Posicao origem, Posicao target){
-       if(quadro.peca(origem).possivelMovimento(target)){
+       if(!quadro.peca(origem).possivelMovimento(target)){
            throw new PsicoExcecao("The chosen piece can't move to target position");
        } 
     }
     
-    private void proximoTurno(){
+    public void proximoTurno(){
         turno--;
+        if(atualPlayer == Cor.WHITE){
+            atualPlayer = YELLOW;
+        } else if(atualPlayer == Cor.YELLOW){
+            atualPlayer = WHITE;
+        }
+    }
+    public void proximaAlocacao(){
+        
         if(atualPlayer == Cor.WHITE){
             atualPlayer = YELLOW;
         } else if(atualPlayer == Cor.YELLOW){
