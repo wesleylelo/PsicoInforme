@@ -35,6 +35,7 @@ import static psico.Cor.YELLOW;
         boolean[][] mat  = new boolean[getQuadro().getLinhas()][getQuadro().getColunas()];
         Posicao p = new Posicao(0,0);
         p.setValores(posicao.getLinha(), posicao.getColuna());
+        System.out.println("+++++++++++++++0");
         if(cor == WHITE){
         while(getQuadro().posicaoExiste(p) && !getQuadro().existeEUmaPeca(p)){
             p.setLinha(p.getLinha() + 1);

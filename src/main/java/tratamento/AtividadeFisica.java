@@ -35,7 +35,6 @@ public class AtividadeFisica extends Tratamento{
                 + beneficios.get(1)
                 + beneficios.get(2)
                 + beneficios.get(3)
-                + beneficios.get(4)
-                + beneficios.get(5));
+                );
     }
 }
