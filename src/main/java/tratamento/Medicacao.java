@@ -18,23 +18,21 @@ public class Medicacao extends Tratamento {
 
     public Medicacao( Quadro quadro) {
         super(0.20, 25, quadro);
-        this.beneficios = beneficios;
-        this.beneficios.add(0,"Alívio imediato dos sintomas\n");
-        this.beneficios.add(1,"Diminuição dos pensamentos obsessivos\n");
-        this.beneficios.add(2,"Aumento da serotonina ou outras substâncias\n");
-        this.beneficios.add(3,"Melhora do apetite e do sono\n");
+        
     }
     @Override
     public String toString(){
         return "C";
     }
-    public String Informativo(){
-        return ("A Medicaçao tem benefícios diversos, " + 
-                "podendo amenizar e até mesmo eliminar os sintomas do paciente. \n Lista de Benefícios: \n" 
-                + beneficios.get(0)
-                + beneficios.get(1)
-                + beneficios.get(2)
-                + beneficios.get(3)
+    public static String Informativo(){
+        return ("""
+                A Medica\u00e7ao tem benef\u00edcios diversos, podendo amenizar e at\u00e9 mesmo eliminar os sintomas do paciente. 
+                 Lista de Benef\u00edcios: 
+                Al\u00edvio imediato dos sintomas
+                Diminui\u00e7\u00e3o dos pensamentos obsessivos
+                Aumento da serotonina ou outras subst\u00e2ncias
+                Melhora do apetite e do sono
+                """
                 );
     }
 }

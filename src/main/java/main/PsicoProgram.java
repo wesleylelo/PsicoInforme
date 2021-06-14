@@ -12,7 +12,14 @@ import psico.PsicoCampo;
 import psico.PsicoExcecao;
 import psico.PsicoPeca;
 import psico.PsicoPosicao;
+import psicopatologia.Ansiedade;
+import psicopatologia.Depressao;
+import psicopatologia.Esquizofrenia;
 import psicopatologia.Psicopatologia;
+import tratamento.AtividadeFisica;
+import tratamento.Medicacao;
+import tratamento.Meditacao;
+import tratamento.Terapia;
 import tratamento.Tratamento;
 
 public class PsicoProgram {
@@ -25,6 +32,7 @@ public class PsicoProgram {
         Scanner sc = new Scanner(System.in);
         Scanner b = new Scanner(System.in);
         int j,l,k = 0;
+        String ler;
         System.out.println("Bem vim ao Jogo de Informacao do Mundo psicológico\nDigite 1, 2 ou 3 para escolher os mapas");
         j = sc.nextInt();
        while(j != 0){
@@ -53,7 +61,8 @@ public class PsicoProgram {
         System.out.println(k);
         PsicoCampo psicoCampo = new PsicoCampo(k);
         AlocarPecas(psicoCampo);
-        while(psicoCampo.getTurno() != 0 || psicoCampo.getTratamentoLife() == 0 || psicoCampo.VivoOuMorto()){
+        while(psicoCampo.getTurno() != 0){
+        do{
             try{
                 UI.clearScreen();
                 UI.printPsicoCampo(psicoCampo);
@@ -62,33 +71,36 @@ public class PsicoProgram {
                 System.out.println("Digite 1 para mover ou 2 para atacar");
                 l = sc.nextInt();
                 if(l == 1){
-                    System.out.print("Source: \n");
+                    System.out.println("Source: ");
                     sc.nextLine();
-                    PsicoPosicao source = UI.lerPsicoPosicao(sc);
-                    
+                    ler = sc.nextLine();
+                    PsicoPosicao source = UI.lerPsicoPosicao(ler);   
                     boolean[][] possibleMoves = psicoCampo.PossiveisMovimentos(source);
-                    UI.clearScreen();
-                    UI.printLife(source, psicoCampo);
-                    UI.printQuadro(psicoCampo.getPecas(), possibleMoves);                    
+                    UI.clearScreen();                   
                     System.out.println();
-                    UI.printLife(source, psicoCampo);
-                    System.out.print("Target: ");
-                    PsicoPosicao target = UI.lerPsicoPosicao(sc);
+                    System.out.println("Target: ");
+                    
+                    ler = sc.nextLine();
+                    PsicoPosicao target = UI.lerPsicoPosicao(ler);
+                    UI.printQuadro(psicoCampo.getPecas(), possibleMoves); 
                     UI.printLife(target, psicoCampo);
-                    PsicoPeca capturedPiece = psicoCampo.performMove(source, target);
+                    psicoCampo.performMove(source, target);
                     psicoCampo.proximoTurno();
                 }else{
-                    System.out.print("Source: ");
+                    System.out.println("Source: ");
                     sc.nextLine();
-                    PsicoPosicao source = UI.lerPsicoPosicao(sc);
+                    ler = sc.nextLine();
+                    PsicoPosicao source = UI.lerPsicoPosicao(ler);
                     UI.printLife(source, psicoCampo);
                     PsicoPeca p = (PsicoPeca)psicoCampo.getQuadro().peca(source.toPosicao());
                     boolean[][] possivelAtaque = p.possivelAtaque();
                     UI.clearScreen();
-                    UI.printQuadro(psicoCampo.getPecas(), possivelAtaque);
                     System.out.println();
-                    System.out.print("Target: ");
-                    PsicoPosicao target = UI.lerPsicoPosicao(sc);
+                    
+                    System.out.println("Target: ");
+                    
+                    ler = sc.nextLine();
+                    PsicoPosicao target = UI.lerPsicoPosicao(ler);
                     UI.printLife(target, psicoCampo);
                     if((PsicoPeca)(psicoCampo.getQuadro().peca(target.toPosicao())) instanceof Psicopatologia){
                        ((Psicopatologia)((Psicopatologia)(PsicoPeca)psicoCampo.getQuadro().peca(target.toPosicao()))).setResistencia(
@@ -97,28 +109,53 @@ public class PsicoProgram {
                            (psicoCampo).getQuadro().removerPeca(target.toPosicao());
                        }
                     }else if((PsicoPeca)(psicoCampo.getQuadro().peca(target.toPosicao())) instanceof Tratamento){
-                        psicoCampo.setTratamentoLife(((Tratamento)((Tratamento)(PsicoPeca)psicoCampo.getQuadro().peca(target.toPosicao()))).getBloqueio(
-                        (((Psicopatologia)((Psicopatologia)(PsicoPeca)psicoCampo.getQuadro().peca(source.toPosicao())))).getSeveridade()));
-                    }
+                        psicoCampo.setTratamentoLife(
+                        ((Psicopatologia)((Psicopatologia)(PsicoPeca)psicoCampo.getQuadro().peca(source.toPosicao()))).getSeveridade()*1.0);
+                    } 
                     
                     psicoCampo.proximoTurno();
                 }
             }
             catch(PsicoExcecao e){
                 System.out.println(e.getMessage());
-                sc.nextLine();
+               
             }
             catch(InputMismatchException e){
                 System.out.println(e.getMessage());
-                sc.nextLine();
+
             }
             
             
+        }while(psicoCampo.getTurno() != 0 && psicoCampo.getTratamentoLife() > 0);
+        
+        if(psicoCampo.getTurno() == 0 && psicoCampo.getTratamentoLife() != 0 && psicoCampo.VivoOuMorto()){
+           System.out.println("Deseja jogar mais? Adicione mais turnos "); 
+           int ç;
+           ç = sc.nextInt();
+           psicoCampo.setTurno(ç); 
+           continue;
+        } else if( psicoCampo.getTratamentoLife() == 0){
+           System.out.println("Que pena que Psicopatologia ganhou, :C \n" 
+                   + "Importante saber seu inimigo, segue alguns informes:"
+                   + Ansiedade.Informativo()
+                   + Depressao.Informativo()
+                   + Esquizofrenia.Informativo()
+           ); 
+        } else{
+            System.out.println("Isso aí, você conheceu bem seus benefícios\n" 
+                   + "Segue alguns informes:"
+                   + AtividadeFisica.Informativo()
+                   + Medicacao.Informativo()
+                   + Meditacao.Informativo()
+                   + Terapia.Informativo()
+           ); 
         }
         sc.close();
         b.close();
     }
-}
+   }   
+  }
+
 
     
 

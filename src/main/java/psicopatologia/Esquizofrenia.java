@@ -16,17 +16,10 @@ import psico.Cor;
  * @author lelo0
  */
 public class Esquizofrenia extends Psicopatologia {
-    ArrayList<String> sintomas = new ArrayList<String>();
 
     public Esquizofrenia(Quadro quadro) {
         super(30, 100,quadro);
-        this.sintomas = sintomas;
-        this.sintomas.add(0,"Delírio, ter certeza cristalizada\n");
-        this.sintomas.add(1,"Pensamentos Obsessivos\n");
-        this.sintomas.add(2,"Alucinações, ver imagens ilusórios\n");
-        this.sintomas.add(3,"Achar que tem super talentos\n");
-        this.sintomas.add(4,"Pensamentos distorcidos\n");
-        this.sintomas.add(5,"Medo irracionais\n");
+        
     }
     @Override
     public String toString(){
@@ -41,15 +34,18 @@ public class Esquizofrenia extends Psicopatologia {
             return true;
         }
     }
-    public String Informativo(){
-        return ("Na Esquizofrenia existem diversos sintomas, " + 
-                "podendo paralizar o paciente. \n Lista de Sintomas: \n" 
-                + sintomas.get(0)
-                + sintomas.get(1)
-                + sintomas.get(2)
-                + sintomas.get(3)
-                + sintomas.get(4)
-                + sintomas.get(5));
+    public static String Informativo(){
+        
+        return ("""
+                Na Esquizofrenia existem diversos sintomas, podendo paralizar o paciente. 
+                 Lista de Sintomas: 
+                Del\u00edrio, ter certeza cristalizada
+                Pensamentos Obsessivos
+                Alucina\u00e7\u00f5es, ver imagens ilus\u00f3rios
+                Achar que tem super talentos
+                Pensamentos distorcidos
+                Medo irracionais
+                """);
     }
     
     public Integer Atacar(){

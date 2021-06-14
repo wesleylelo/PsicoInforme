@@ -19,23 +19,21 @@ public class Terapia extends Tratamento {
 
     public Terapia(Quadro quadro) {
         super(0.25, 25, quadro);
-        this.beneficios = beneficios;
-        this.beneficios.add(0,"Autoconhecimento\n");
-        this.beneficios.add(1,"Conhecimento através da associação livre\n");
-        this.beneficios.add(2,"Bem-Estar\n");
-        this.beneficios.add(3,"Melhora por técnicas terapêuticas\n");
+        
     }
     @Override
     public String toString(){
         return "T";
     }
-    public String Informativo(){
-        return ("A Terapia tem benefícios diversos, " + 
-                "podendo amenizar e até mesmo eliminar os sintomas do paciente. \n Lista de Benefícios: \n" 
-                + beneficios.get(0)
-                + beneficios.get(1)
-                + beneficios.get(2)
-                + beneficios.get(3)
+    public static String Informativo(){
+        return ("""
+                A Terapia tem benef\u00edcios diversos, podendo amenizar e at\u00e9 mesmo eliminar os sintomas do paciente. 
+                 Lista de Benef\u00edcios: 
+                Autoconhecimento
+                Conhecimento atrav\u00e9s da associa\u00e7\u00e3o livre
+                Bem-Estar
+                Melhora por t\u00e9cnicas terap\u00eauticas
+                """
                 );
     }
 }

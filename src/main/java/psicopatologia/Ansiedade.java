@@ -24,13 +24,7 @@ public class Ansiedade extends Psicopatologia {
 
     public Ansiedade(Quadro quadro) {
         super(20, 100, quadro);
-        this.sintomas = sintomas;
-        this.sintomas.add(0,"Aumento do batimento cardíaco\n");
-        this.sintomas.add(1,"Pensamentos Obsessivos\n");
-        this.sintomas.add(2,"Pensamento focado no Futuro\n");
-        this.sintomas.add(3,"Angústia\n");
-        this.sintomas.add(4,"Pensamentos Negativos sobre o futuro\n");
-        this.sintomas.add(5,"Medo irracionais\n");
+        
     }
     
     @Override
@@ -45,14 +39,16 @@ public class Ansiedade extends Psicopatologia {
             return true;
         }
     }
-    public String Informativo(){
-        return ("Na Ansiedade existem diversos sintomas, " + 
-                "podendo paralizar o paciente. \n Lista de Sintomas" + sintomas.get(0)
-                + sintomas.get(1)
-                + sintomas.get(2)
-                + sintomas.get(3)
-                + sintomas.get(4)
-                + sintomas.get(5));
+    public static String Informativo(){
+        return ("""
+                Na Ansiedade existem diversos sintomas, podendo paralizar o paciente. 
+                 Lista de SintomasAumento do batimento card\u00edaco
+                Pensamentos Obsessivos
+                Pensamento focado no Futuro
+                Ang\u00fastia
+                Pensamentos Negativos sobre o futuro
+                Medo irracionais
+                """);
     }
     public Integer Atacar(){
         return getSeveridade();

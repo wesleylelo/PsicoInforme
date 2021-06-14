@@ -68,10 +68,11 @@ public abstract class Psicopatologia extends PsicoPeca {
             mat[p.getLinha()][p.getColuna()] = true;
         }
         
-        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
+        p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){
             mat[p.getLinha()][p.getColuna()] = true;
         }
+        
         
         p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
         if(getQuadro().posicaoExiste(p) && podeMover(p)){

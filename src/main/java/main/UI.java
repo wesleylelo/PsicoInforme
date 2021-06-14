@@ -49,10 +49,10 @@ public class UI {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public static PsicoPosicao lerPsicoPosicao(Scanner sc){
+    public static PsicoPosicao lerPsicoPosicao(String sc){
         try{
             
-            String s = sc.nextLine();
+            String s = sc;
             char coluna = s.charAt(0);
             int linha = Integer.parseInt(s.substring(1));
             return new PsicoPosicao(coluna, linha);
@@ -115,7 +115,7 @@ public class UI {
 	}
     
     public static PsicoCampo AlocarPecas(PsicoCampo psicoCampo1){
-        int n,m,h = 4;
+        int n,m,h = 1;
         String s;
         Scanner sc = new Scanner(System.in);
             UI.clearScreen();
@@ -194,7 +194,7 @@ public class UI {
                     }
                 }
             }
-                h = 3;
+                h = 1;
                 psicoCampo1.proximaAlocacao();
             while(h != 0){
                 System.out.println("Psicopatologia: \nDigite 1 - Ansiedade 2 - Depressao 3 - Esquizofrenia");
@@ -252,7 +252,7 @@ public class UI {
             }
         } 
         else{ 
-            h = 3;
+            h = 1;
             while(h != 0){               
                 System.out.println("Digite 1 - Ansiedade 2 - Depressao 3 - Esquizofrenia");
                 m = sc.nextInt();
@@ -307,7 +307,7 @@ public class UI {
                 }
                 }
                 psicoCampo1.proximaAlocacao();
-                h = 4;
+                h = 1;
                 while(h != 0){
                     System.out.println("Tratamento: \nDigite 1 - Atividade Fisica 2 - Medicacao 3 - Meditacao 4 - Terapia");            
                     

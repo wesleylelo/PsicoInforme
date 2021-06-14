@@ -18,13 +18,7 @@ public class Depressao extends Psicopatologia{
 
     public Depressao(Quadro quadro) {
         super(35, 100,quadro);
-        this.sintomas = sintomas;
-        this.sintomas.add(0,"Fadiga\n");
-        this.sintomas.add(1,"Pensamentos Obsessivos Negativos\n");
-        this.sintomas.add(2,"Falta de energia e apetite\n");
-        this.sintomas.add(3,"Tristeza em excesso\n");
-        this.sintomas.add(4,"Pensamentos suicidas, em casos graves\n");
-        this.sintomas.add(5,"Sem esperança de alegria e bem-estar\n");
+        
     }
     @Override
     public String toString(){
@@ -38,14 +32,17 @@ public class Depressao extends Psicopatologia{
             return true;
         }
     }
-    public String Informativo(){
-        return ("Na Depressão existem diversos sintomas, " + 
-                "podendo paralizar o paciente. \n Lista de Sintomas: \n" + sintomas.get(0)
-                + sintomas.get(1)
-                + sintomas.get(2)
-                + sintomas.get(3)
-                + sintomas.get(4)
-                + sintomas.get(5));
+    public static String Informativo(){
+        return ("""
+                Na Depress\u00e3o existem diversos sintomas, podendo paralizar o paciente. 
+                 Lista de Sintomas: 
+                Fadiga
+                Pensamentos Obsessivos Negativos
+                Falta de energia e apetite
+                Tristeza em excesso
+                Pensamentos suicidas, em casos graves
+                Sem esperan\u00e7a de alegria e bem-estar
+                """);
     }
     public Integer Atacar(){
         return getSeveridade();

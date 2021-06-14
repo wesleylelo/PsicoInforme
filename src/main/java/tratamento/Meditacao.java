@@ -28,13 +28,15 @@ public class Meditacao extends Tratamento {
     public String toString(){
         return "D";
     }
-    public String Informativo(){
-        return ("A Meditaçao tem benefícios diversos, " + 
-                "podendo amenizar e até mesmo eliminar os sintomas do paciente. \n Lista de Benefícios: \n" 
-                + beneficios.get(0)
-                + beneficios.get(1)
-                + beneficios.get(2)
-                + beneficios.get(3)
+    public static String Informativo(){
+        return ("""
+                A Medita\u00e7ao tem benef\u00edcios diversos, podendo amenizar e at\u00e9 mesmo eliminar os sintomas do paciente. 
+                 Lista de Benef\u00edcios: 
+                Maior foco no presente
+                Menor impacto dos pensamentos obsessivos
+                Bem-Estar
+                Al\u00edvio e melhor sono
+                """
                 );
     }
 }

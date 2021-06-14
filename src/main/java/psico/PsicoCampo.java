@@ -94,14 +94,13 @@ public class PsicoCampo {
             for(int j = 0; j < quadro.getColunas(); j++){
                 mat[i][j] = (PsicoPeca) quadro.peca(i, j);
                 mat[i][j] = (Psicopatologia)mat[i][j];
-                if(((Psicopatologia)mat[i][j]).getResistencia() == 0)
+                if(((Psicopatologia)mat[i][j]).getResistencia() <= 0 || ((Psicopatologia)mat[i][j]) == null)
                     continue;
-                else{
-                    return false;
-                }
+                else
+                    return true;
             }
         }
-        return true;
+        return false;
     }
     public boolean [][] PossiveisMovimentos(PsicoPosicao origemPosicao){
         Posicao posicao = origemPosicao.toPosicao();

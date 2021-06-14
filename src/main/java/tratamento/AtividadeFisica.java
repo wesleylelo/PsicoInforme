@@ -19,22 +19,19 @@ public class AtividadeFisica extends Tratamento{
     public AtividadeFisica(Quadro quadro) {
         super(0.15, 25, quadro);
         
-        this.beneficios.add(0,"Liberação de dopamina\n");
-        this.beneficios.add(1,"Maior concentração\n");
-        this.beneficios.add(2,"Bem-Estar\n");
-        this.beneficios.add(3,"Alívio dos sintomas e melhora sono\n");
+        
     }
     @Override
     public String toString(){
         return "F";
     }
-    public String Informativo(){
+    public static String Informativo(){
         return ("A Atividade Física tem benefícios diversos, " + 
                 "podendo amenizar e até mesmo eliminar os sintomas do paciente. \n Lista de Benefícios: \n" 
-                + beneficios.get(0)
-                + beneficios.get(1)
-                + beneficios.get(2)
-                + beneficios.get(3)
+                + "Liberação de dopamina\n"
+                + "Maior concentração\n"
+                + "Bem-Estar\n"
+                + "Alívio dos sintomas e melhora sono\n"
                 );
     }
 }
